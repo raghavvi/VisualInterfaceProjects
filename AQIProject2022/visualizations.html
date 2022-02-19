@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D3 Bad Air Project</title>
+<link rel="icon" href="data:;base64,iVBORwOKGO=" />
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: relative;
+  /* z-index: 1; */
+  /* top: 0; */
+  overflow-x: hidden;
+  /* padding-top: 20px; */
+}
+
+.left {
+  /* left: 0; */
+  background-color: white;
+}
+
+.right {
+  right: 0;
+  background-color: pink;
+}
+
+.dropdown {
+    margin-left: 150px;
+}
+
+.button {
+  width:295px;
+  height: 290px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.page-container {
+  top: 300px;
+}
+
+
+.container {
+    /* remember to set a width */
+    /* margin-right: auto;
+    margin-left: auto; */
+    /* margin-bottom: 100px; */
+    margin-left: 30px;
+    width:40%; 
+    height: 70%; 
+    border:1px dashed black;
+    text-align:center;
+}
+
+svg{
+    display: block;
+    margin: auto;
+    text-align:center;
+    /* width:"50px";
+    height:"50px"; */
+}
+
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+h3 {
+  text-align: center; 
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="./index.html">Home</a>
+  <a href="./resources.html">Resources</a>
+  <a href="./visualizations.html">Visualizations</a>
+  <!-- <a href="#">Chloropeth Map</a> -->
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+<div class="split left">
+
+  <div class="'page-container">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Counties
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">JavaScript</a></li>
+    </ul>
+  </div>
+  
+  <!-- <svg id="line3"></svg> -->
+ 
+      <table style="width:100%">
+        <tr>
+          <th>Vis1</th>
+          <th>Vis2</th>
+        </tr>
+        <tr>
+          <td>
+            <!-- <div class="container"> -->
+            
+              <svg id="line2"></svg> 
+              <!-- </div>    -->
+              <div id="tooltip"></div>
+          </td>
+          
+          <td>
+            <!-- <div class="container"> -->
+
+              <svg id="line3">
+              </svg>
+              <div id="tooltip2"></div>
+              <!-- </div>    -->
+          </td>  
+        </tr>
+        
+      </table>
+      
+      <table style="width:100%">
+        <tr>
+          <th>Vis3</th>
+          <th>Vis4</th>
+        </tr>
+        <tr>
+          <td>
+            <!-- <div class="container"> -->
+              <svg id="line4" width="100%">
+    
+              </svg>
+              <div id="tooltip3"></div>
+              <!-- </div>    -->
+          </td>
+  
+          <td>
+            <!-- <div class="container"> -->
+              <svg id="bar2">
+                 
+              </svg>
+              <!-- </div>    -->
+          </td>
+        </tr>  
+      </table>  
+
+      <table style="width:100%" >
+        <tr>
+          <th>Vis5.1</th>
+          <th>Vis5.2</th>
+        </tr>
+        <tr>
+
+          <td>
+            <!-- <div class="container"> -->
+              <!-- <svg id="pie1">
+              </svg>   -->
+              <div>
+                <h3>Percentage of SO2 For Each Year</h3>
+                <div id="pie1"></div> 
+              </div>
+
+         
+
+            <!-- </div>  -->
+          </td>
+  
+          <td>
+            <!-- <div class="container"> -->
+              <div>
+                <h3>Percentage of CO For Each Year</h3>
+                <div id="pie2"></div> 
+              </div>
+            <!-- </div>    -->
+          </td>
+        </tr>  
+      </table>       
+
+      <table style="width:100%">
+        <tr>
+          <th>Vis5.3</th>
+          <th>Vis5.4</th>
+        </tr>
+        <tr>
+          <td>
+            <!-- <div class="container"> -->
+              <div>
+                <h3>Percentage of Ozone For Each Year</h3>
+                <div id="pie3"></div> 
+              </div>
+              <!-- </div>    -->
+          </td>
+          <td>
+            <div>
+              <h3>Percentage of NO For Each Year</h3>
+              <div id="pie4"></div> 
+            </div>
+          </td>
+        </tr>  
+      </table>     
+
+      <table style="width:100%">
+        <tr>
+          <th>Vis5.5</th>
+          <th>Vis5.6</th>
+        </tr>
+        <tr>
+          <td>
+            <!-- <div class="container"> -->
+              <div>
+                <h3>Percentage of PM10 For Each Year</h3>
+                <div id="pie5"></div> 
+              </div>
+              <!-- </div>    -->
+          </td>
+          <td>
+            <!-- <div class="container"> -->
+              <div>
+                <h3>Percentage of PM25 For Each Year</h3>
+                <div id="pie6"></div> 
+              </div>
+              <!-- </div>    -->
+          </td>          
+        </tr>  
+      </table>        
+
+  </div> 
+    </div>
+  
+
+    <!-- <div id="pie1"></div> -->
+
+
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="js/d3.v6.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/line.js"></script>  
+<script src="js/line2.js"></script>  
+<script src="js/line3.js"></script> 
+<script src="js/bar.js"></script>  
+<script src="js/bar2.js"></script> 
+<script src="js/bar3.js"></script> 
+<script src="js/pie.js"></script> 
+
+</body>
+</html> 
